@@ -1,12 +1,12 @@
-package matematica.interpolacao.newton;
+package matematica.interpolacao.polinomial.newton;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import matematica.interpolacao.polinomial.newton.tabela_diferenca.Ordem;
+import matematica.interpolacao.polinomial.newton.tabela_diferenca.TabelaDeDiferencasDivididas;
 import utilitarios.StringBuilderLn;
 import matematica.geral.coordenadas.Coordenadas;
-import matematica.interpolacao.newton.tabela_diferenca.Ordem;
-import matematica.interpolacao.newton.tabela_diferenca.TabelaDeDiferencasDivididas;
 
 class DiferencasDivididasImportantes {
 	private List<Double> importantes;

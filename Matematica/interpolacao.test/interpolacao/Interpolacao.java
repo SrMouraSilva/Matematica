@@ -1,10 +1,11 @@
 package interpolacao;
 
 import matematica.geral.coordenadas.Coordenadas;
-import matematica.interpolacao.Interpolador;
-import matematica.interpolacao.lagrange.LagrangeInterpolador;
-import matematica.interpolacao.newton.NewtonInterpolador;
-import matematica.interpolacao.sistema_linear.SistemaLinearInterpolador;
+import matematica.interpolacao.polinomial.InterpoladorPolinomial;
+import matematica.interpolacao.polinomial.PolinomioInterpolador;
+import matematica.interpolacao.polinomial.lagrange.LagrangeInterpolador;
+import matematica.interpolacao.polinomial.newton.NewtonInterpolador;
+import matematica.interpolacao.polinomial.sistema_linear.SistemaLinearInterpolador;
 import matematica.sistema_linear.exception.EntradaException;
 
 public class Interpolacao {
@@ -13,13 +14,13 @@ public class Interpolacao {
 
 		Coordenadas coordenadas = new Coordenadas();
 
-		coordenadas.add(    -1,   0)
+		coordenadas//.add(    -1,   0)
 				   .add( 0.125, 0.5)
 				   .add(     2,   1);
 
-		//listemaLinear(coordenadas, xInterpolador);
+		listemaLinear(coordenadas, xInterpolador);
 		lagrange(coordenadas, xInterpolador);
-		//newton(coordenadas, xInterpolador);
+		newton(coordenadas, xInterpolador);
 	}
 
 	private static void listemaLinear(Coordenadas coordenadas, double xInterpolador) throws EntradaException {
@@ -27,8 +28,12 @@ public class Interpolacao {
 		System.out.println("   Sistema Linear");
 		System.out.println("====================");
 
-		Interpolador interpolador = new SistemaLinearInterpolador(coordenadas, xInterpolador);
+		InterpoladorPolinomial interpolador = new SistemaLinearInterpolador(coordenadas);
+		PolinomioInterpolador polinomio = interpolador.gerarPolinomioInterpolador();
+
 		System.out.println(interpolador);
+		System.out.println("Polinômio interpolado: P(x) =" + polinomio);
+		System.out.println("Para x = " + xInterpolador + ", P(x) = " +polinomio.calcularPara(xInterpolador));
 	}
 
 	private static void lagrange(Coordenadas coordenadas, double xInterpolador) {
@@ -36,7 +41,7 @@ public class Interpolacao {
 		System.out.println("      Lagrange");
 		System.out.println("====================");
 
-		Interpolador lagrange = new LagrangeInterpolador(coordenadas, xInterpolador);
+		InterpoladorPolinomial lagrange = new LagrangeInterpolador(coordenadas, xInterpolador);
 		//System.out.println(lagrange);
 	}
 
@@ -45,7 +50,7 @@ public class Interpolacao {
 		System.out.println("        Newton");
 		System.out.println("====================");
 
-		Interpolador newton = new NewtonInterpolador(coordenadas, xInterpolador);
+		InterpoladorPolinomial newton = new NewtonInterpolador(coordenadas, xInterpolador);
 		System.out.println(newton);
 	}
 }

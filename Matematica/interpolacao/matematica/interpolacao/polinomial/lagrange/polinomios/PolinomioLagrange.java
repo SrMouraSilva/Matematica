@@ -1,4 +1,4 @@
-package matematica.interpolacao.lagrange.polinomios;
+package matematica.interpolacao.polinomial.lagrange.polinomios;
 
 import java.util.List;
 

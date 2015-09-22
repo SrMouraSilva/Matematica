@@ -1,12 +1,14 @@
-package matematica.interpolacao.newton;
+package matematica.interpolacao.polinomial.newton;
 
+import matematica.geral.polinomio.Polinomio;
+import matematica.interpolacao.polinomial.InterpoladorPolinomial;
+import matematica.interpolacao.polinomial.PolinomioInterpolador;
+import matematica.interpolacao.polinomial.newton.tabela_diferenca.TabelaDeDiferencasDivididas;
 import utilitarios.StringBuilderLn;
 import matematica.geral.coordenadas.Coordenadas;
 import matematica.geral.polinomio.OldPolinomio;
-import matematica.interpolacao.Interpolador;
-import matematica.interpolacao.newton.tabela_diferenca.TabelaDeDiferencasDivididas;
 
-public class NewtonInterpolador implements Interpolador {
+public class NewtonInterpolador implements InterpoladorPolinomial {
 
 	private double xInterpolador;
 
@@ -107,5 +109,10 @@ public class NewtonInterpolador implements Interpolador {
 		}
 		
 		return builder;
+	}
+
+	@Override
+	public PolinomioInterpolador gerarPolinomioInterpolador() {
+		return null;
 	}
 }

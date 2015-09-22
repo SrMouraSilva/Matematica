@@ -1,4 +1,4 @@
-package matematica.interpolacao.newton;
+package matematica.interpolacao.polinomial.newton;
 
 import java.util.ArrayList;
 import java.util.List;

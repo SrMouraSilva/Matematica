@@ -69,6 +69,19 @@ public class Monomio implements Comparable<Monomio> {
 		return this.parteLiteral().size() == 0;
 	}
 
+	public Monomio atribuirValorDe(Incognita incognita, double valor) {
+		Monomio resultado = Monomio.unitario();
+		resultado = resultado.vezes(this.coeficiente());
+
+		for (Incognita inc : this.parteLiteral())
+			if (incognita.isEquivalent(inc))
+				resultado = resultado.vezes(Math.pow(valor, inc.expoente()));
+			else
+				resultado = resultado.vezes(inc);
+
+		return resultado;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		Monomio monomio = (Monomio) obj;

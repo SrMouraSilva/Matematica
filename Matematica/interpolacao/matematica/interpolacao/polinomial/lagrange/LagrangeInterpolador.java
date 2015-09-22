@@ -1,15 +1,17 @@
-package matematica.interpolacao.lagrange;
+package matematica.interpolacao.polinomial.lagrange;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import matematica.geral.coordenadas.Coordenadas;
-import matematica.interpolacao.Interpolador;
-import matematica.interpolacao.lagrange.polinomios.L;
-import matematica.interpolacao.lagrange.polinomios.LCalculador;
-import matematica.interpolacao.lagrange.polinomios.PolinomioLagrange;
+import matematica.geral.polinomio.Polinomio;
+import matematica.interpolacao.polinomial.InterpoladorPolinomial;
+import matematica.interpolacao.polinomial.PolinomioInterpolador;
+import matematica.interpolacao.polinomial.lagrange.polinomios.L;
+import matematica.interpolacao.polinomial.lagrange.polinomios.LCalculador;
+import matematica.interpolacao.polinomial.lagrange.polinomios.PolinomioLagrange;
 
-public class LagrangeInterpolador implements Interpolador {
+public class LagrangeInterpolador implements InterpoladorPolinomial {
 
 	public LagrangeInterpolador(Coordenadas coordenadas, double xInterpolador) {
 		List<L> resultados = calcularLs(coordenadas, xInterpolador);
@@ -40,5 +42,10 @@ public class LagrangeInterpolador implements Interpolador {
 		}
 
 		return resultados;
+	}
+
+	@Override
+	public PolinomioInterpolador gerarPolinomioInterpolador() {
+		return null;
 	}
 }

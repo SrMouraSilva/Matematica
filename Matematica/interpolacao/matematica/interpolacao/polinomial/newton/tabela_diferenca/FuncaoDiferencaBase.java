@@ -1,4 +1,4 @@
-package matematica.interpolacao.newton.tabela_diferenca;
+package matematica.interpolacao.polinomial.newton.tabela_diferenca;
 
 import matematica.geral.coordenadas.Coordenada;
 

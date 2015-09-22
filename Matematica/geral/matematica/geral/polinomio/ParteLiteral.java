@@ -17,7 +17,8 @@ public class ParteLiteral implements Iterable<Incognita>, Comparable<ParteLitera
 		ParteLiteral parteLiteral = new ParteLiteral();
 		
 		for (Incognita incognita : incognitas)
-			parteLiteral = parteLiteral.vezes(incognita);
+			if (!incognita.isUnitaria())
+				parteLiteral = parteLiteral.vezes(incognita);
 
 		return parteLiteral;
 	}

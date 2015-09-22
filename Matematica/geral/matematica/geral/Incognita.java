@@ -5,6 +5,7 @@ public class Incognita implements Comparable<Incognita> {
 	private char representacao;
 	private double expoente;
 
+	/** @return new Incógnita na base 1 */
 	public Incognita(char representacao) {
 		this(representacao, 1);
 	}

@@ -79,6 +79,22 @@ public class PolinomioTeste {
 	}
 
 	@Test
+	public void maisParteLiteralNulaTest() {
+		Incognita x0 = new Incognita('x', 0);
+		Incognita x1 = new Incognita('x', 1);
+
+		Polinomio resultado = Polinomio.nulo()
+				.mais(new Monomio(3.75, ParteLiteral.com(x1)))
+				.menos(new Monomio(1.75, ParteLiteral.com(x0)));
+
+		Polinomio esperado = Polinomio.nulo()
+				.mais(new Monomio(3.75, ParteLiteral.com(x1)))
+				.menos(new Monomio(1.75));
+
+		assertEquals(esperado, resultado);
+	}
+
+	@Test
 	public void menosMonomioTest() {
 		Incognita x = new Incognita('x');
 
@@ -150,6 +166,29 @@ public class PolinomioTeste {
 
 		assertEquals(yResultado, y1.vezes(y2));
 		assertEquals(yResultado, y2.vezes(y1));
+	}
+
+
+
+	@Test
+	public void atribuirValorDeTest() {
+		Incognita x = new Incognita('x');
+		Incognita y = new Incognita('y');
+
+		ParteLiteral x2y1 = ParteLiteral.com(x, x, y);
+		ParteLiteral y1 = ParteLiteral.com(y);
+
+		// 2x^2y^1 - 2y^1
+		Polinomio polinomio = Polinomio.nulo()
+				.mais(new Monomio(2, x2y1))
+				.menos(new Monomio(2, y1));
+
+		// 2*2^5*y^1 - 2y^1 = (50 - 2)y^1 = 48y^1
+		Polinomio resultado = Polinomio.nulo()
+				.mais(new Monomio(2 * 25, ParteLiteral.com(y)))
+				.menos(new Monomio(2, y1));
+
+		assertEquals(resultado, polinomio.atribuirValorDe(x, 5));
 	}
 
 	@Test

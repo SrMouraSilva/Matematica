@@ -1,4 +1,4 @@
-package matematica.interpolacao.lagrange.polinomios;
+package matematica.interpolacao.polinomial.lagrange.polinomios;
 
 import matematica.geral.coordenadas.Coordenadas;
 import matematica.geral.polinomio.OldTermo;

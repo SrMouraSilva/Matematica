@@ -1,5 +1,7 @@
 package matematica.geral.polinomio;
 
+import matematica.geral.Incognita;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -123,6 +125,15 @@ public class Polinomio implements Iterable<Monomio> {
 		}
 
 		return true;
+	}
+
+	public Polinomio atribuirValorDe(Incognita incognita, double valor) {
+		Polinomio resultado = new Polinomio();
+
+		for (Monomio monomio : this)
+			resultado = resultado.mais(monomio.atribuirValorDe(incognita, valor));
+
+		return resultado;
 	}
 
 	@Override

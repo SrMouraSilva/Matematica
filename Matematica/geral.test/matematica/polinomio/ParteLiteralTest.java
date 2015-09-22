@@ -94,4 +94,14 @@ public class ParteLiteralTest {
 		assertNotEquals(py, px);
 		assertNotEquals(px, pyx);
 	}
+
+	@Test
+	public void equalsNuloTest() {
+		Incognita x0 = new Incognita('x', 0);
+		Incognita x1 = new Incognita('x');
+		Incognita y1 = new Incognita('y');
+
+		assertEquals(ParteLiteral.com(x0, x1), ParteLiteral.com(x1));
+		assertEquals(ParteLiteral.com(x0, y1), ParteLiteral.com(y1));
+	}
 }

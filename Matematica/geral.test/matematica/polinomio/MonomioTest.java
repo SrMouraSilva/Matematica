@@ -6,6 +6,7 @@ import matematica.geral.polinomio.Monomio;
 import matematica.geral.polinomio.OperacaoMonomioException;
 import matematica.geral.polinomio.ParteLiteral;
 
+import matematica.geral.polinomio.Polinomio;
 import org.junit.Test;
 
 public class MonomioTest {
@@ -191,6 +192,18 @@ public class MonomioTest {
 
 		assertTrue(menos2.isTermoIndependente());
 		assertFalse(mz.isTermoIndependente());
+	}
+
+	@Test
+	public void atribuirValorDeTest() {
+		Incognita z = new Incognita('z');
+		Incognita y = new Incognita('y');
+
+		Monomio tresz2y = Monomio.unitario().vezes(3).vezes(z).vezes(z).vezes(y);
+		Monomio quinzeY = tresz2y.atribuirValorDe(z, 5);
+
+		Monomio resultado = Monomio.unitario().vezes(3 * 5*5).vezes(y);
+		assertEquals(resultado, quinzeY);
 	}
 	
 	@Test

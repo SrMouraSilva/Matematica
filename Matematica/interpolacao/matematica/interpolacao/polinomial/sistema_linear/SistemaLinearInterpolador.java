@@ -1,11 +1,12 @@
-package matematica.interpolacao.sistema_linear;
+package matematica.interpolacao.polinomial.sistema_linear;
 
+import matematica.geral.Incognita;
+import matematica.geral.polinomio.*;
+import matematica.interpolacao.polinomial.InterpoladorPolinomial;
+import matematica.interpolacao.polinomial.PolinomioInterpolador;
 import utilitarios.StringBuilderLn;
 import matematica.geral.coordenadas.Coordenada;
 import matematica.geral.coordenadas.Coordenadas;
-import matematica.geral.polinomio.OldTermo;
-import matematica.interpolacao.Interpolador;
-import matematica.geral.polinomio.OldPolinomio;
 import matematica.sistema_linear.exception.EntradaException;
 import matematica.sistema_linear.solucionador.PorJordanSistemaLinear;
 import matematica.sistema_linear.solucionador.SolucionadorSistemaLinear;
@@ -14,19 +15,16 @@ import matematica.sistema_linear.SistemaLinear;
 import matematica.sistema_linear.SistemaLinearBuilder;
 import matematica.sistema_linear.SolucaoSistemaLinear;
 
-public class SistemaLinearInterpolador implements Interpolador {
-
-	private double xInterpolador;
+public class SistemaLinearInterpolador implements InterpoladorPolinomial {
 
 	private Coordenadas coordenadas;
-	private OldPolinomio polinomioInterpolador;
+	//private OldPolinomio polinomioInterpolador;
+	private PolinomioInterpolador polinomioInterpolador;
 
 	private SistemaLinear sistema;
 	private SolucaoSistemaLinear solucaoSistemaLinear;
 
-	public SistemaLinearInterpolador(Coordenadas coordenadas, double xInterpolador) throws EntradaException {
-		this.xInterpolador = xInterpolador;
-
+	public SistemaLinearInterpolador(Coordenadas coordenadas) throws EntradaException {
 		this.coordenadas = coordenadas;
 
 		this.sistema = gerarSistemaLinearPara(coordenadas);
@@ -34,9 +32,11 @@ public class SistemaLinearInterpolador implements Interpolador {
 		SolucionadorSistemaLinear resolvedor = new PorJordanSistemaLinear();
 		this.solucaoSistemaLinear = resolvedor.solucionar(sistema);
 
-		this.polinomioInterpolador = gerarPolinomioResultado(solucaoSistemaLinear);
+		//this.polinomioInterpolador = gerarPolinomioResultado(solucaoSistemaLinear);
+		this.polinomioInterpolador = gerarPolinomioInterpolador();
 	}
 
+	@Deprecated
 	private OldPolinomio gerarPolinomioResultado(SolucaoSistemaLinear solucaoLinear) {
 		OldPolinomio polinomioInterpolador = OldPolinomio.nulo();
 		int expoente = 0;
@@ -46,6 +46,20 @@ public class SistemaLinearInterpolador implements Interpolador {
 		}
 
 		return polinomioInterpolador;
+	}
+
+	@Override
+	public PolinomioInterpolador gerarPolinomioInterpolador() {
+		Polinomio polinomio = Polinomio.nulo();
+
+		int expoente = 0;
+		for (Coeficiente solucao : solucaoSistemaLinear) {
+			Incognita incognita = new Incognita('x', expoente);
+			polinomio = polinomio.mais(new Monomio(solucao.get(), ParteLiteral.com(incognita)));
+			expoente++;
+		}
+
+		return new PolinomioInterpolador(polinomio);
 	}
 
 	private SistemaLinear gerarSistemaLinearPara(Coordenadas coordenadas) {
@@ -79,7 +93,7 @@ public class SistemaLinearInterpolador implements Interpolador {
 		builder.appendLn();
 
 		builder.appendLn("Polinômio desejado");
-		builder.append("P"+(coordenadas.size()-1)+"(x) = ");
+		builder.append("P" + (coordenadas.size() - 1) + "(x) = ");
 		for (int i = 0; i < coordenadas.size(); i++)
 			builder.append(" +a"+i+"x^"+i);
 		builder.appendLn();
@@ -90,11 +104,9 @@ public class SistemaLinearInterpolador implements Interpolador {
 		builder.appendLn();
 		builder.appendLn("Resultado:");
 		builder.appendLn(solucaoSistemaLinear);
-		
-		builder.append("P"+(coordenadas.size()-1)+"(x) = ");
+
+		builder.append("P" + (coordenadas.size() - 1) + "(x) = ");
 		builder.appendLn(polinomioInterpolador);
-		builder.append("P"+(coordenadas.size()-1)+"(x) = ");
-		builder.append(polinomioInterpolador.calcularFDeX(this.xInterpolador));
 
 		return builder.toString();
 	}
