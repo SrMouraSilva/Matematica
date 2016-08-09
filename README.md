@@ -22,12 +22,16 @@ Um conjunto de bibliotecas que auxiliam na resolução de problemas matemáticos
 
 **Pacote:** matematica.interpolacao
 
-* **Newton**
-* **Lagrange**
-* **Sistema Linear**
-* * Solucionador por **Jordan** (Triangulação dupla)
+ * **Newton**
+ * **Lagrange**
+ * **Sistema Linear**
+   * Solucionador por **Jordan** (Triangulação dupla)
 
 #### Integração
 
 * Por **Simpson**
 * Por **Trapézio**
+
+#### Autômatos
+
+* **AFN** - Autômato Finito Determinístico

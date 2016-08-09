@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="geral"/>
+	<classpathentry kind="src" path="geral.test"/>
+	<classpathentry kind="src" path="integracao"/>
+	<classpathentry kind="src" path="integracao.test"/>
+	<classpathentry kind="src" path="interpolacao"/>
+	<classpathentry kind="src" path="interpolacao.test"/>
+	<classpathentry kind="src" path="sistema_linear"/>
+	<classpathentry kind="src" path="sistema_linear.test"/>
+	<classpathentry kind="src" path="automato"/>
+	<classpathentry kind="src" path="automato.test"/>
+	<classpathentry kind="lib" path="lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
