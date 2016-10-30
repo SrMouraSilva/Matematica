@@ -1,7 +1,8 @@
 package matematica.glc;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedList;
 
 import matematica.automato.alfabeto.Alfabeto;
 
@@ -34,7 +35,7 @@ public class CYK {
 						Variavel C = producao.getSegundaVariavel();
 
 						if (tabela.get(i, k).contains(B) && tabela.get(k+1, j).contains(C))
-							tabela.get(i, j).add(A);
+							tabela.get(i, j).add(A); // NÃO TÁ ENTRANDO AQUI
 					}
 				}
 			}
@@ -44,19 +45,42 @@ public class CYK {
 	}
 
 	public static class Tabela {
-		private List<Variavel>[][] tabela;
+		private Collection<Variavel>[][] tabela;
 
 		public Tabela(String w) {
 			int n = w.length();
 
-			tabela = new List[n+1][n+1];
+			tabela = new LinkedList[n+1][n+1];
 		}
 		
-		public List<Variavel> get(int i, int j) {
-			if (tabela[i][i] == null)
-				tabela[i][i] = new ArrayList<>();
+		public Collection<Variavel> get(int i, int j) {
+			if (tabela[i][j] == null)
+				tabela[i][j] = new LinkedList<>();
 			
-			return tabela[i][i];
+			return tabela[i][j];
+		}
+		
+		@Override
+		public String toString() {
+			StringBuilder builder = new StringBuilder();
+
+			int j = 0;
+			for (Collection<Variavel>[] lists : tabela) {
+				builder.append(j + " - ");
+
+				int i = 0;
+				for (Collection<Variavel> list : lists) {
+					//if (i >= j)
+						builder.append(Arrays.asList(list));
+
+					i++;
+				}
+
+				builder.append('\n');
+				j++;
+			}
+
+			return builder.toString();
 		}
 	}
 }

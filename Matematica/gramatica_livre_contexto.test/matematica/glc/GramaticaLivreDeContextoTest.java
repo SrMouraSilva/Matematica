@@ -53,7 +53,7 @@ public class GramaticaLivreDeContextoTest {
 			"A→&",
 			"C→)",
 			"I→DH",
-			"D→∼",
+			"D→~",
 			"P→p",
 			"N→RN|SN|1|2",
 			"R→1",
@@ -62,7 +62,7 @@ public class GramaticaLivreDeContextoTest {
 
 		GramaticaLivreDeContexto gramatica = new GramaticaLivreDeContexto(producoes);
 		
-		assertTrue(CYK.testar(gramatica, "p"));
+		//assertTrue(CYK.testar(gramatica, "p"));
 		assertTrue(CYK.testar(gramatica, "p1"));
 		assertTrue(CYK.testar(gramatica, "p11"));
 		assertTrue(CYK.testar(gramatica, "p12"));
@@ -80,7 +80,7 @@ public class GramaticaLivreDeContextoTest {
 		assertFalse(CYK.testar(gramatica, ""));
 		assertFalse(CYK.testar(gramatica, "a"));
 		assertFalse(CYK.testar(gramatica, "abba"));
-		assertFalse(CYK.testar(gramatica, "p.")); // <--
+		assertFalse(CYK.testar(gramatica, "p."));
 
 		assertFalse(CYK.testar(gramatica, "(( ))"));
 		assertFalse(CYK.testar(gramatica, "(p&pa)"));
