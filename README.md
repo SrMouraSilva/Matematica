@@ -32,6 +32,7 @@ Um conjunto de bibliotecas que auxiliam na resolução de problemas matemáticos
 * Por **Simpson**
 * Por **Trapézio**
 
-#### Autômatos
+#### Teoria da computação
 
 * **AFN** - Autômato Finito Determinístico
+* **GLC** - Gramática Livre de Contexto (algoritmo CYK para GLC na forma normal de Chomsky)
