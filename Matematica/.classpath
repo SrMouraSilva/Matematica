@@ -10,6 +10,8 @@
 	<classpathentry kind="src" path="sistema_linear.test"/>
 	<classpathentry kind="src" path="automato"/>
 	<classpathentry kind="src" path="automato.test"/>
+	<classpathentry kind="src" path="gramatica_livre_contexto"/>
+	<classpathentry kind="src" path="gramatica_livre_contexto.test"/>
 	<classpathentry kind="lib" path="lib/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
